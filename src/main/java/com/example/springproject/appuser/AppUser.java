@@ -20,6 +20,7 @@ import java.util.Collections;
 public class AppUser implements UserDetails {
 
 //// test
+
     @SequenceGenerator(
             name = "student_sequence",
             sequenceName = "student_sequence",
