@@ -15,4 +15,8 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class Consumer extends User {
     private Timestamp createdTs;
+
+    public Consumer(Long userId) {
+        this.setId(userId);
+    }
 }

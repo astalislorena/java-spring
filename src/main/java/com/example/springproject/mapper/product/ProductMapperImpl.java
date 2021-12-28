@@ -10,9 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class ProductMapperImpl implements ProductMapper {
-
-    private final ProductRepository productRepository;
-
     @Override
     public ProductDto toService(Product entity) {
         return new ProductDto(entity.getId(), entity.getName(), entity.getDescription(), entity.getImageUrl(), entity.getPrice(), entity.getQuantity());
