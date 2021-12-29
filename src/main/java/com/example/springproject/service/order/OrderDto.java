@@ -15,11 +15,12 @@ public class OrderDto {
     List<ProductDto> products;
     Long consumerId;
 
-    public OrderDto(Long id, List<Product> productsList,Date orderTimestamp, Long consumerId) {
+    public OrderDto(Long id, List<Product> productsList, Date orderTimestamp, Long consumerId) {
         this.id = id;
         this.orderTimestamp = orderTimestamp;
         this.consumerId = consumerId;
         products = new ArrayList<>();
+        System.out.println("Here i am " + productsList.stream().count());
         for (Product product : productsList) {
             products.add(new ProductDto(product.getId(), product.getName(), product.getDescription(), product.getImageUrl(), product.getPrice(), product.getQuantity()));
         }

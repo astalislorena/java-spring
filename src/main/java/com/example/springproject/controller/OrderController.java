@@ -20,6 +20,7 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<?> addOrder(@RequestBody OrderDto orderDto) {
+        System.out.println(orderDto.getProducts());
         try{
             orderService.addOrder(orderDto);
         } catch (Exception exception){

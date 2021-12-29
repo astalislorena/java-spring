@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "CONSUMER")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,6 +23,4 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-//    private Date birthdate;
-
 }

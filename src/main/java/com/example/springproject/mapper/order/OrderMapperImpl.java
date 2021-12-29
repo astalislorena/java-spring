@@ -21,6 +21,6 @@ public class OrderMapperImpl implements OrderMapper{
     @Override
     public Order toEntity(OrderDto dto) {
         List<Product> products = dto.getProducts().stream().map(Product::new).collect(Collectors.toList());
-        return new Order(dto.getId(),products,dto.getOrderTimestamp());
+        return new Order(dto.getId(), products, dto.getOrderTimestamp());
     }
 }

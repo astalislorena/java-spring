@@ -1,11 +1,9 @@
 package com.example.springproject.service.order;
 
 import com.example.springproject.entity.Order;
-import com.example.springproject.entity.Product;
 import com.example.springproject.entity.user.Consumer;
 import com.example.springproject.mapper.order.OrderMapper;
 import com.example.springproject.repository.OrderRepository;
-import com.example.springproject.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

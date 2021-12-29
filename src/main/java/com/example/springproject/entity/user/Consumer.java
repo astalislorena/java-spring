@@ -9,7 +9,6 @@ import javax.persistence.Table;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "CONSUMER")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,5 +17,10 @@ public class Consumer extends User {
 
     public Consumer(Long userId) {
         this.setId(userId);
+    }
+
+    public Consumer(Long id, String email, String password, String firstName, String lastName, Timestamp createdTs) {
+        super(id, email, password, firstName, lastName);
+        this.createdTs = createdTs;
     }
 }
