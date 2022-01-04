@@ -22,6 +22,11 @@ public class ProductController {
         return productService.getProduct(id);
     }
 
+    @GetMapping("/all")
+    public List<ProductDto> getProduct(){
+        return productService.getProducts();
+    }
+
     @PostMapping
     public ResponseEntity<?> addProduct(@RequestBody ProductDto productDto) {
         try{

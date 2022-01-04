@@ -3,8 +3,13 @@ package com.example.springproject.service.consumer;
 import com.example.springproject.entity.user.Consumer;
 import com.example.springproject.mapper.consumer.ConsumerMapper;
 import com.example.springproject.repository.ConsumerRepository;
+import com.example.springproject.service.product.ProductDto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -32,6 +37,11 @@ public class ConsumerServiceImpl implements ConsumerService {
     }
 
     @Override
+    public List<ConsumerDto> getConsumers() {
+        return consumerRepository.findAll().stream().map(product -> this.consumerMapper.toService(product)).collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteConsumer(Long consumerId) {
         this.consumerRepository.deleteById(consumerId);
     }
@@ -43,6 +53,19 @@ public class ConsumerServiceImpl implements ConsumerService {
             c.setEmail(consumer.getEmail());
             c.setFirstName(consumer.getFirstName());
             c.setLastName(consumer.getLastName());
+            consumerRepository.save(c);
         });
+    }
+
+    @Override
+    public Boolean loginConsumer(String email, String password) {
+        Optional<Consumer> consumer = consumerRepository.findByEmail(email);
+        if(consumer.isPresent())
+        {
+            if(password.equals(consumer.get().getPassword()))
+                return true;
+            return false;
+        }
+        return false;
     }
 }

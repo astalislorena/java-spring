@@ -6,6 +6,9 @@ import com.example.springproject.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Service
 @AllArgsConstructor
@@ -29,6 +32,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public List<ProductDto> getProducts() {
+        return productRepository.findAll().stream().map(product -> this.productMapper.toService(product)).collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteProduct(Long productDtoId) {
         this.productRepository.deleteById(productDtoId);
     }
@@ -41,7 +49,9 @@ public class ProductServiceImpl implements ProductService {
             p.setDescription(product.getDescription());
             p.setPrice(product.getPrice());
             p.setQuantity(product.getQuantity());
+            productRepository.save(p);
         });
+
     }
 
 }

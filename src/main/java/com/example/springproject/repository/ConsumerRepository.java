@@ -10,4 +10,5 @@ import java.util.Optional;
 @Repository
 public interface ConsumerRepository extends JpaRepository<Consumer, Long> {
     Optional<Consumer> findById(Long id);
+    Optional<Consumer> findByEmail(String email);
 }

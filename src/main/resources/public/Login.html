@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<form>
+    <label for="email">email:</label><br>
+    <input type="text" id="email" name="email" ><br>
+
+    <label for="password">password:</label><br>
+    <input type="password" id="password" name="password"><br>
+
+    <button type="button" onclick="loginfunc()">Login</button>
+</form>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+    function loginfunc(){
+        let email = $('#email').val();
+        let password = $('#password').val();
+        $.ajax({
+            url: `/consumer/login`,
+            type: 'POST',
+            data: JSON.stringify({email, password}),
+            contentType: "application/json",
+            success: function(result) {
+                // Do something with the result
+                //console.log(result);
+                if(result == true)
+                    window.location="/Admin.html"
+                else alert("Invalid username or password");
+            }
+        });
+    }
+</script>
+</body>
+</html>

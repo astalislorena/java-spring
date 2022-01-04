@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/consumer")
 @AllArgsConstructor
@@ -22,6 +24,11 @@ public class ConsumerController {
         return consumerService.getConsumer(id);
     }
 
+    @GetMapping("/all")
+    public List<ConsumerDto> getProduct(){
+        return consumerService.getConsumers();
+    }
+
     @PostMapping
     public ResponseEntity<?> addConsumer(@RequestBody ConsumerDto consumerDto) {
         try{
@@ -31,6 +38,17 @@ public class ConsumerController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(consumerDto,HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Boolean> loginConsumer(@RequestBody ConsumerDto consumerDto)
+    {
+        try{
+            return new ResponseEntity<>(consumerService.loginConsumer(consumerDto.getEmail(), consumerDto.getPassword()), HttpStatus.OK);
+        } catch (Exception exception){
+            System.out.println(exception.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping(value = "/{id}")
